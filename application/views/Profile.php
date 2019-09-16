@@ -18,6 +18,8 @@
 
 	<h2>Hello <?php echo $_SESSION['username']; ?></h2>
 
+	<h2>Welcome to Keysian Bidding.</h2>
+
 	<br><br>
 
 	<a href="<?php echo base_url()?>index.php/auth/logout">Logout</a>
