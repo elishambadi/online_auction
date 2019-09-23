@@ -27,7 +27,7 @@ class Auth extends CI_Controller
 
 			$user = $query->row(); //All user data where username and password match
 			//Check if user exists
-			if($user->email){ //Check if email exists for user
+			if($user->username){ //Check if email exists for user
 				$this->session->set_flashdata("Success", "Login in successful.");
 
 				$_SESSION['user_logged'] = TRUE;
@@ -36,7 +36,7 @@ class Auth extends CI_Controller
 				redirect('user/profile', 'refresh');
 			}else{
 				$this->session->set_flashdata("error", "Account does not exist.");
-				redirect('auth/login', 'refresh');
+				//redirect('auth/login', 'refresh');
 			}
 		}
 		$this->load->view('login');
@@ -59,7 +59,7 @@ class Auth extends CI_Controller
 				$data = array(
 					'username'=> $_POST['username'],
                     'email'=> $_POST['email'],
-                    'gender'=> $_POST['username'],
+                    'gender'=> $_POST['gender'],
 					'password'=>md5($_POST['password']), //Password encryption
 					'phone'=> $_POST['phone'],
 					//'created-Date'=> date(Y-m-d),		
@@ -67,7 +67,7 @@ class Auth extends CI_Controller
 
 				$this->db->insert('users', $data);
 
-				$this->session->set_flashdata("success", "Your account has been registered. You will be redirected to login");
+				$this->session->set_flashdata("success", "Your account has been registered. You will be redirected to the homepage");
 				redirect("auth/register", "refresh");
 			}
 		}

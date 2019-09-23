@@ -21,38 +21,67 @@
 	<?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
 
 	<form action="" method="POST">
+		<!--
 		<div class="form-group">
 			<label for="username" class="label-default">Username: </label>
 			<input type="text" class="form-control" id="username" name="username">
 		</div>
+		
+	-->
 
-		<div class="form-group">
-			<label for="email" class="label-default">Email: </label>
-			<input type="text" class="form-control" id="email" name="email">
-		</div>
+	<div class="form-group <?php  echo form_error('name') ? 'has-error' : ''; ?>">
+<label for="name">Username</label>
+<div class="validation-error">
+    <?php echo form_error ( 'username' ); ?>
+</div>
+<div class="form-group">
+    <input id="name" type="text" class="form-control validate" name="username" value="<?php echo set_value('username'); ?>">
+</div>
+
+
+<div class="form-group <?php  echo form_error('name') ? 'has-error' : ''; ?>">
+<label for="email">Email</label>
+<div class="validation-error">
+    <?php echo form_error ( 'email' ); ?>
+</div>
+<div class="form-group">
+    <input id="email" type="email" class="form-control validate" name="email" value="<?php echo set_value('email'); ?>">
+</div>
+
 
 		<div class="form-group">
 			<label for="password" class="label-default">Password: </label>
 			<input type="password" class="form-control" id="password" name="password">
 		</div>
 
+		
+
+
 		<div class="form-group">
 			<label for="password" class="label-default">Confirm password: </label>
 			<input type="password" class="form-control" id="password2" name="password">
 		</div>
 
-		<div class="form-group">
-			<label for="gender" class="label-default">Gender: </label>
-			<select class="form-control" name="gender" id="gender">
+		
+
+		<div class="form-group <?php  echo form_error('gender') ? 'has-error' : ''; ?>">
+			<label for="gender">Gender: </label>
+			<div class="validation-error">
+				<?php echo form_error ( 'gender' ); ?>
+</div>
+			<select class="form-control" name="gender" value="<?php echo set_value('gender'); ?>">
 				<option value="Male">Male</option>
 				<option value="Female">Female</option>
 			</select>
 		</div>
 
+
 		<div class="form-group">
 			<label for="phone" class="label-default">Phone Number: </label>
-			<input type="number" class="form-control" name="phone" id="phone">
+			<input type="number" class="form-control" id="phone" name="phone">
 		</div>
+
+
 
 		<div class="text-center">
 			<button class="btn btn-primary" name="register">Register</button>
@@ -60,6 +89,8 @@
 	</form>
 </div>
 
-<script src="<?php echo base_url()?>assets/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/bootstrap.min.js">
+alert("You have successfully been registered as a bidder")
+</script>
 </body>
 </html>

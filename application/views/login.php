@@ -33,7 +33,7 @@
 
 
 		<div class="text-center">
-			<button class="btn btn-primary" name="login">Login</button>
+			<button class="btn btn-primary" name="login" color="purple">Login</button>
 		</div>
 	</form>
 </div>
