@@ -10,6 +10,7 @@
 <body>
 <div class="col-lg-5 col-lg-offset-2">
 	<h1>Bidders Panel</h1>
+	<p>Welcome to place any bids on our properties.</p>
 
 	<!--	Checking if session variable success is set from the controller-->
 	<?php if (isset($_SESSION['success'])) { ?>
