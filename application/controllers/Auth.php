@@ -63,12 +63,7 @@ public function __construct()
 		$this->form_validation->set_rules('password', 'password', 'required');
 		$this->form_validation->set_rules('gender', 'gender', 'required');
 		$this->form_validation->set_rules('phone', 'phone', 'required');
-	public function index(){
-		//Opens register page
-		$this->load->view('register');
-	}
-
-
+	
        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
        $this->form_validation->set_message('required', 'Enter %s');
  
