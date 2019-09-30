@@ -3,15 +3,20 @@
 
 
 <head>
-<link rel="stylesheet" type="text/css" href="KeysianAboutUs.css"/>
+<link rel="stylesheet" type="text/css" href="../../assets/css/KeysianAboutUs.css"/>
+<style>
+	body{
+		background-image: url('../../assets/Sky.JPG');
+	}
+</style>
 
 <div class="navigation">
 <div class="logo">
-<img src="Keysian.PNG" height="50" width="80"/><br>
+<img src="../../assets/Keysian.png" height="50" width="80"/><br>
 </div>
 <a href = "#">Home</a>
-<a href = "#">About Us</a>
-<a href = "#">Contact Us</a>
+<a href = "keysianAboutUs">About Us</a>
+<a href = "keysianContactUs">Contact Us</a>
 </div>
 <h1>KEYSIAN AUCTIONEERS<h1>
 </head>

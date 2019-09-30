@@ -25,6 +25,4 @@ VALUES ('$pname', '$amount','$image','$price','$date_created','$description')";
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 $insert= $conn->query("SELECT item, amount, image ,price,date_created,status FROM Users");
-
-
 ?>
