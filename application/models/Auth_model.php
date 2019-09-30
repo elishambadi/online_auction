@@ -2,8 +2,27 @@
 	class Auth_model extends CI_Model
 	{
 		public function __construct()
-		{
-			parent::__construct(); //Constructor function
-		}
-	}
+    {
+        $this->load->database();
+    }
+     
+    public function auth_check($data)
+    {
+        $query = $this->db->get_where('users', $data);
+        if($query){   
+         return $query->row();
+        }
+        return false;
+    }
+    public function insert_user($data)
+    {
+ 
+        $insert = $this->db->insert('users', $data);
+        if ($insert) {
+           return $this->db->insert_id();
+        } else {
+            return false;
+        }
+    }
+}
 ?>

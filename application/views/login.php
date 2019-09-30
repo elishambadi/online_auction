@@ -1,43 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>Login</title>
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <title>Sign in</title>
 </head>
+<style type="text/css">
+     
+    body {
+        background-color: #F3EBF6;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    div.error {
+        margin-bottom: 15px;
+        margin-top: -6px;
+        margin-left: 58px;
+        color: red;
+    }
+    .main {
+        background-color: #FFFFFF;
+        width: 400px;
+        height: 400px;
+        margin: 7em auto;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+     
+    .sign {
+        padding-top: 40px;
+        color: #8C55AA;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+        font-size: 23px;
+    }
+     
+    .un {
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 46px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+    }
+     
+    form.form1 {
+        padding-top: 40px;
+    }
+     
+    .pass {
+            width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 46px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+    }
+     
+    
+    .un:focus, .pass:focus {
+        border: 2px solid rgba(0, 0, 0, 0.18) !important;
+         
+    }
+     
+    .submit {
+      cursor: pointer;
+        border-radius: 5em;
+        color: #fff;
+        background: linear-gradient(to right, #9C27B0, #E040FB);
+        border: 0;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Ubuntu', sans-serif;
+        margin-left: 35%;
+        font-size: 13px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+     
+    .forgot {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #E1BEE7;
+        padding-top: 15px;
+    }
+     
+    button {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #E1BEE7;
+        text-decoration: none
+    }
+     
+    @media (max-width: 600px) {
+        .main {
+            border-radius: 0px;
+        }
+         
+</style>
 <body>
-<div class="col-lg-5 col-lg-offset-2">
-	<h1>Bidder Login</h1>
-	<p>Enter your credentials to login</p>
-
-<!--	Checking if session variable success is set from the controller-->
-	<?php if (isset($_SESSION['success'])) { ?>
-		<div class="alert alert-success"><?php echo $_SESSION['success']; ?></div>
-	<?php }?>
-
-<!--	Echo errors - from controller validation-->
-	<?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
-
-	<form action="" method="POST">
-		<div class="form-group">
-			<label for="username" class="label-default">Username: </label>
-			<input type="text" class="form-control" id="username" name="username">
-		</div>
-
-		<div class="form-group">
-			<label for="password" class="label-default">Password: </label>
-			<input type="password" class="form-control" id="password" name="password">
-		</div>
-
-
-		<div class="text-center">
-			<button class="btn btn-primary" name="login" color="purple">Login</button>
-		</div>
-	</form>
-</div>
-
-<script src="<?php echo base_url()?>assets/js/bootstrap.min.js"></script>
+  <div class="main">
+    <p class="sign" align="center">Sign in</p>
+    <form action="<?php echo base_url('auth/login') ?>" method="post" accept-charset="utf-8">
+      <input class="un " type="text" align="center" name="username" placeholder="Username">
+      <?php echo form_error('username'); ?> 
+      <input class="pass" type="password" align="center" name="password" placeholder="Password">
+      <?php echo form_error('password'); ?> 
+      <button type="submit" align="center" class="submit">Sign in</button>
+      
+     </form>                
+    </div>
+      
 </body>
 </html>

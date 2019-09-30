@@ -1,0 +1,106 @@
+head{
+	size: 20px;
+	
+}
+
+
+body{
+	background-size: cover;
+	height: 100%;
+	text-align: center;
+	display: inline-block;
+	
+}
+
+.logo{
+	margin-left:0%;
+	position: left;
+}
+
+.navigation{
+	border: 2px solid;
+	border-color: black;
+	background-color: white;
+	padding: 0px;
+	margin-top: 0%;
+	margin-left: 0%;
+	margin-right: 0%;
+	
+	width: 100%;
+}
+.navigation a{
+	display: inline-block;
+	color: black;
+	border: 2px solid;
+	border-color: white;
+	height: 50px;
+	
+}
+input{
+	width: 50%;
+	height: 40px;
+}
+
+.container{
+	height:350px;
+	width: 320px;
+	background-color: black;
+	color: white;
+	position: center;
+	margin-left: 38%;
+	
+}
+
+.Footer{
+	padding: 15px;
+	border: 2px solid;
+	border-color: black;
+	background-color: grey;
+	padding: 0px;
+	margin-Bottom: 0%;
+	margin-left: 0%;
+	margin-right: 0%;
+	
+	
+	
+	
+}
+.Footer div{
+	width:310px;
+	height: 200px;
+	display: inline-block;
+	float: center;
+	margin-top:0%;
+	padding: 8px;
+
+	
+	
+}
+.BriefHistory{
+	margin-top:0%;
+	margin-left:0%;
+	border: 2px ;
+	
+	display: inline-block;
+}
+.WhatWeDo{
+	margin-top:0%;
+	margin-left:0%;
+	border: 2px ;
+	
+	display: inline-block;
+}
+.ReachUs{
+	margin-top:0%;
+	margin-left:0%;
+	border: 2px ;
+	
+	display: inline-block;
+}
+.GeographicalFootprint{
+margin-top:0%;
+margin-left:0%;
+border: 2px ;
+
+display: inline-block;	
+}

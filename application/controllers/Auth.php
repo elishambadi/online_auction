@@ -1,79 +1,122 @@
 <?php
 class Auth extends CI_Controller
 {
-
-	public function logout(){
-		unset($_SESSION);
-		session_destroy();
-		redirect("auth/login", "refresh");
-	}
-
-	public function login()
-	{
-		$this->form_validation->set_rules('username', 'Username', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|matches[password]');
-
-		if($this->form_validation->run() == TRUE){
-			//If form is validated, check user in DB
-
-			$username = $_POST['username'];
-			$password = md5($_POST['password']);
-
-			$this->db->select ('*');
-			$this->db->from ('users');
-			$this->db->where (array('username' => $username, 'password' => $password));
-
-			$query = $this->db->get();
-
-			$user = $query->row(); //All user data where username and password match
-			//Check if user exists
-			if($user->username){ //Check if email exists for user
-				$this->session->set_flashdata("Success", "Login in successful.");
-
-				$_SESSION['user_logged'] = TRUE;
-				$_SESSION['username'] = $user->username;
-
-				redirect('user/profile', 'refresh');
-			}else{
-				$this->session->set_flashdata("error", "Account does not exist.");
-				//redirect('auth/login', 'refresh');
-			}
-		}
-		$this->load->view('login');
-	}
-
-	public function register(){
-		if (isset($_POST['register'])){
-			//Setting validation rules
-			$this->form_validation->set_rules('username', 'Username', 'required');
-			$this->form_validation->set_rules('email', 'Email', 'required');
-			$this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|matches[password]');
-			$this->form_validation->set_rules('phone', 'Phone', 'required|min_length[10]');
-
-			//Validating form
-			if ($this->form_validation->run() == TRUE){
-				echo 'form validated';
-
-				//Code to enter/send the data to the DB
-				//Left side: DB Items, Right side: Items from HTML Form
-				$data = array(
-					'username'=> $_POST['username'],
-                    'email'=> $_POST['email'],
-                    'gender'=> $_POST['gender'],
-					'password'=>md5($_POST['password']), //Password encryption
-					'phone'=> $_POST['phone'],
-					//'created-Date'=> date(Y-m-d),		
-				);
-
-				$this->db->insert('users', $data);
-
-				$this->session->set_flashdata("success", "Your account has been registered. You will be redirected to the homepage");
-				redirect("auth/register", "refresh");
-			}
-		}
-
-		//Loading register view
+public function __construct()
+        {
+         parent::__construct();
+         $this->load->model('auth_model');
+             $this->load->library(array('form_validation','session'));
+			 $this->load->helper(array('url','html','form'));  
+                 $this->user_id = $this->session->userdata('user_id');
+        }
+  
+  
+    public function index()
+    {
+     $this->load->view('login');
+    }
+    public function login()
+        {
+ 
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        $this->form_validation->set_message('required', 'Enter %s');
+ 
+        if ($this->form_validation->run() === FALSE)
+        {  
+            $this->load->view('login');
+        }
+        else
+        {   
+            $data = array(
+               'username' => $this->input->post('username'),
+               'password' => md5($this->input->post('password')),
+ 
+             );
+   
+            $check = $this->auth_model->auth_check($data);
+            
+            if($check != false){
+ 
+                 $user = array(
+                 'user_id' => $check->id,
+                 'username' => $check->username,
+                 'email' => $check->email,
+                 
+                );
+  
+            $this->session->set_userdata($user);
+ 
+             redirect( base_url('dashboard') ); 
+            }
+ 
+           $this->load->view('login');
+        }
+         
+    }   
+    public function register()
+    {
+ 
+        $this->form_validation->set_rules('username', 'username', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+		$this->form_validation->set_rules('password', 'password', 'required');
+		$this->form_validation->set_rules('gender', 'gender', 'required');
+		$this->form_validation->set_rules('phone', 'phone', 'required');
+	public function index(){
+		//Opens register page
 		$this->load->view('register');
 	}
+
+
+       $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+       $this->form_validation->set_message('required', 'Enter %s');
+ 
+        if ($this->form_validation->run() === FALSE)
+        {  
+            $this->load->view('register');
+        }
+        else
+        {   
+            $data = array(
+               'username' => $this->input->post('username'),
+			   'email' => $this->input->post('email'),
+			   'password' => md5($this->input->post('password')),
+               'gender' => $this->input->post('gender'),
+               'phone' => $this->input->post('phone'),
+               
+ 
+             );
+   
+            $check = $this->auth_model->insert_user($data);
+ 
+            if($check != false){
+ 
+                $user = array(
+				 'user_id' => $check,
+				 'username' => $this->input->post('username'),
+                 'email' => $this->input->post('email'),
+                 'gender' => $this->input->post('gender'),
+                );
+             }
+  
+             $this->session->set_userdata($user);
+ 
+             redirect( base_url('auth/dashboard') ); 
+            }
+ 
+         
+    }
+    public function logout(){
+    $this->session->sess_destroy();
+    redirect(base_url('auth'));
+   }    
+   
+   public function dashboard(){
+       if(empty($this->user_id)){
+        redirect(base_url('auth'));
+      }
+       $this->load->view('dashboard');
+    }
 }
 ?>

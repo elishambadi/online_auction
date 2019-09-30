@@ -128,7 +128,7 @@ abstract class CI_DB_driver {
 	 *
 	 * @var	mixed
 	 */
-	public $encrypt			= FALSE;
+	public $encrypt			= TRUE;
 
 	/**
 	 * Swap Prefix
